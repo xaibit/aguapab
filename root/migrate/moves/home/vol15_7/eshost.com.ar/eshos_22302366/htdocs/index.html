@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="es"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>AguaPab</title>
+
+  <!-- Included CSS Files -->
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  <link rel="stylesheet" href="stylesheets/app.css">
+
+  <!--[if lt IE 9]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+  <![endif]-->
+
+  <script src="javascripts/modernizr.foundation.js"></script>
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+	<div class="row">
+		<div class="twelve columns">
+                 <div style="width:100%; float:left;">
+                     <div style="width:20%; float:left;">
+		     	<img src="images/aguapab.jpeg" align="left" width="70" height="70" alt=""/>
+		     </div>
+		     <div style="width:75%; float:left;">
+		     	<img src="images/logo-n.png" align="left" width="260" height="250" alt=""/>
+		     </div>
+                  </div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="twelve columns">
+			<ul class="nav-bar">
+ 		 		<li><a href="#">Login</a></li>
+			</ul>
+			
+		</div>
+	</div>
+	
+	<!-- don't mind this script, I just added them for fun! -->
+	<script charset="ISO-8859-1" src="http://fast.wistia.com/static/popover-v1.js"></script>
+	
+	<div class="row">
+		<div class="twelve columns">
+			<div class="row">
+				<div class="eight columns">
+					<form class="form-signin" action="login.php" method="post">
+        					<input type="text" id="user" name="user" class="form-control" placeholder="Usuario" required autofocus>
+						<input type="password" id="pass" name="pass" class="form-control" placeholder="Password" required>
+						<input class="btn btn-lg btn-primary btn-block" id="login" name="login" value="Ingresar" type="submit" style="background: rgb(43, 166, 203) linear-gradient(to bottom, rgb(43, 166, 203) 5%, rgb(43, 166, 203) 100%) repeat scroll 0% 0%; border-radius: 28px; border: 1px solid rgb(43, 166, 203); display: inline-block; cursor: pointer; color: rgb(255, 255, 255); font-family: Arial; font-size: 13px; padding: 7px 20px; text-decoration: none; text-shadow: 0px 1px 0px rgb(43, 166, 203);">
+						
+					</form>
+				
+				</div>
+		
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="twelve columns">
+		<hr />
+		<p align="center">©2016 - Diseñado e implementado por <a href="http://degla.com.ar/" target="_blank">DEGLA</a>.</p>
+		</div>
+	</div>
+</body>
