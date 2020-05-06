@@ -203,7 +203,7 @@
       // Ejecuta la sentencia SQL 
       $resultado = $iden->query($sentencia);
       if(!$resultado) 
-       die("\n Error: no se pudo reiniciar la tabla corriendo ". " ");
+       die("Error: no se pudo reiniciar la tabla corriendo ". " ");
       return $resultado; 
     }	
 
@@ -213,28 +213,6 @@
 	$iden->close($iden);
     }	
 
-    function addClient($nombre, $dir, $cuit, $iva, $descuento, $localidad, $codPostal, $nro_cliente, $borrado, $mail, $lista, $calleZ, $altura, 
-					   $obs, $credito, $perib, $perIbFechaExento, $retrib, $retIbFechaExento)
-    {
-      $iden = mysqli_connect($_SESSION["db"][0], $_SESSION["db"][1], $_SESSION["db"][2],$_SESSION["db"][3]);
-      $iden->set_charset("utf8");
-		//mysql example
-		//INSERT INTO clientes (Nombre, Direccion, CUIT, IVA, descuento, Localidad, CodPostal, Nro, BORRADO, email, lista, calleZ, Altura, Obs, Credito, PERIB, PER_IB_FECHA_EXENTO, RETIB, //RET_IB_FECHA_EXENTO) VALUES ("CONSUMIDOR FINAL", "CONSUMIDOR FINAL", 00-00000000-0, 5, 0, "9 de julio", 00000, 10001,0, "no tiene", 0, 1, 0, "SIN OBS", 0, 0, "2/7/2015 10:22:05", 0, "2/7/2015 //10:22:05")
-
-	    $sentencia = "INSERT INTO Clientes (Nombre, Direccion, CUIT, IVA, descuento, Localidad, CodPostal, Nro, BORRADO, email, lista, calleZ, Altura, Obs, Credito, PERIB, PER_IB_FECHA_EXENTO, RETIB, RET_IB_FECHA_EXENTO) VALUES         ('$nombre', '$dir', $cuit, $iva, $descuento, '$localidad', $codPostal, $nro_cliente, $borrado, '$mail', $lista, $calleZ, $altura, '$obs', $credito, $perib, '$perIbFechaExento', $retrib, '$retIbFechaExento') "; 
-		//echo para debug:			   
-		//echo "query: --------  $sentencia ---------- ";
-      
-      // Ejecuta la sentencia SQL 
-      $resultado = $iden->query($sentencia);
-	  	
-      if(!$resultado) 
-       die("\n Error: no se pudo agregar el cliente ". $nombre);
-    }	
-	
-
-
-	
   
   } // class DB
 ?>
