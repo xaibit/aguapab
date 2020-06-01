@@ -213,25 +213,120 @@
 	$iden->close($iden);
     }	
 
-    function addClient($nombre, $dir, $cuit, $iva, $descuento, $localidad, $codPostal, $nro_cliente, $borrado, $mail, $lista, $calleZ, $altura, 
+    function addClient(&$oldIden,$tableName, $nombre, $dir, $cuit, $iva, $descuento, $localidad, $codPostal, $nro_cliente, $borrado, $mail, $lista, $calleZ, $altura, 
 					   $obs, $credito, $perib, $perIbFechaExento, $retrib, $retIbFechaExento)
     {
-      $iden = mysqli_connect($_SESSION["db"][0], $_SESSION["db"][1], $_SESSION["db"][2],$_SESSION["db"][3]);
-      $iden->set_charset("utf8");
+        if ($oldIden == null){
+             $iden = mysqli_connect($_SESSION["db"][0], $_SESSION["db"][1], $_SESSION["db"][2],$_SESSION["db"][3]);
+             $iden->set_charset("utf8");
+             $oldIden = $iden;
+        } else {
+            $iden = $oldIden;
+        }
+
 		//mysql example
 		//INSERT INTO clientes (Nombre, Direccion, CUIT, IVA, descuento, Localidad, CodPostal, Nro, BORRADO, email, lista, calleZ, Altura, Obs, Credito, PERIB, PER_IB_FECHA_EXENTO, RETIB, //RET_IB_FECHA_EXENTO) VALUES ("CONSUMIDOR FINAL", "CONSUMIDOR FINAL", 00-00000000-0, 5, 0, "9 de julio", 00000, 10001,0, "no tiene", 0, 1, 0, "SIN OBS", 0, 0, "2/7/2015 10:22:05", 0, "2/7/2015 //10:22:05")
 
-	    $sentencia = "INSERT INTO Clientes (Nombre, Direccion, CUIT, IVA, descuento, Localidad, CodPostal, Nro, BORRADO, email, lista, calleZ, Altura, Obs, Credito, PERIB, PER_IB_FECHA_EXENTO, RETIB, RET_IB_FECHA_EXENTO) VALUES         ('$nombre', '$dir', $cuit, $iva, $descuento, '$localidad', $codPostal, $nro_cliente, $borrado, '$mail', $lista, $calleZ, $altura, '$obs', $credito, $perib, '$perIbFechaExento', $retrib, '$retIbFechaExento') "; 
+        if ($nombre == "")
+            $nombre = "CONSUMIDOR FINAL";
+        if ($dir == "")
+            $dir = "SIN CALLE 0";
+        if ($cuit == "")
+            $cuit = "00-00000000-0";
+        if ($iva == "")
+            $iva = "1";
+        if ($descuento == "")
+            $descuento = "0";
+        if ($Loclocalidadalidad == "")
+            $localidad = "Falta";
+        if ($codPostal == "")
+            $codPostal = "Falta";
+        if ($nro_cliente == "")
+            $nro_cliente = "Falta";
+        if ($borrado == "")
+            $borrado = "FALSO";
+        if ($email == "")
+            $email = "NO TIENE";
+        if ($lista == "")
+            $lista = "0";
+        if ($calleZ == "")
+            $calleZ = 0; 
+        if ($altura == "")
+            $altura = "0";
+        if (empty($obs) or strlen($obs) == 0)
+            $obs = "SIN OBS";
+        if (empty($credito) or strlen($credito) == 0)
+            $credito = "0";
+        if ($perib == "")
+            $perib = "0";
+        if ($PER_IB_FECHA_EXENTO == "")
+            $perIbFechaExento = "42187 432";
+        if ($retrib == "")
+            $retrib = "0";
+        if ($retIbFechaExento == "")
+            $retIbFechaExento = "42187 432";
+        
+
+	    $sentencia = "INSERT INTO $tableName (Nombre, Direccion, CUIT, IVA, descuento, Localidad, CodPostal, Nro, BORRADO, email, lista, calleZ, Altura, Obs, Credito, PERIB, PER_IB_FECHA_EXENTO, RETIB, RET_IB_FECHA_EXENTO) VALUES         ('$nombre', '$dir', '$cuit', '$iva', '$descuento', '$localidad', '$codPostal', '$nro_cliente', '$borrado', '$mail', '$lista', $calleZ, '$altura', '$obs', '$credito', '$perib', '$perIbFechaExento', '$retrib', '$retIbFechaExento') "; 
 		//echo para debug:			   
 		//echo "query: --------  $sentencia ---------- ";
       
       // Ejecuta la sentencia SQL 
       $resultado = $iden->query($sentencia);
 	  	
-      if(!$resultado) 
-       die("\n Error: no se pudo agregar el cliente ". $nombre);
+      if(!$resultado)
+         die("\n Error: no se pudo agregar el cliente ". $nombre . ". La base de datos no ha sido modificada. ");
+      return $resultado;
     }	
 	
+    function table_backup($table)					
+    {
+        if($this->copy_table($table, $table.'_back')) {
+            echo "Backup at table: " . $table ." -> Success";
+            return "success";
+        }
+        else {
+            echo "Backup at table: " . $table ." -> FAIL!";
+            return "fail";
+        }
+    }
+
+    function copy_table($from, $to) 
+    {
+        $iden = mysqli_connect($_SESSION["db"][0], $_SESSION["db"][1], $_SESSION["db"][2],$_SESSION["db"][3]);
+        $iden->set_charset("utf8");
+        /*
+        $from = "Clientes";
+        $to = "Clientes_BKP";
+
+        if(! $this->table_exists($to)) {
+             $sentencia = "CREATE TABLE $to LIKE $from;"; 
+             $resultado = $iden->query($sentencia);
+        }*/
+        $sentencia = "INSERT INTO $to SELECT * FROM $from;"; 
+        $resultado = $iden->query($sentencia);
+        if(!$resultado) 
+            die("\n Error: no se pudo hacer backup de la tabla: ". $from );
+        return $resultado; 
+        
+    }
+
+    function table_exists($tablename) 
+    {
+        $iden = mysqli_connect($_SESSION["db"][0], $_SESSION["db"][1], $_SESSION["db"][2],$_SESSION["db"][3]);
+        $iden->set_charset("utf8");
+
+        //$sentencia = "SELECT DATABASE();"; 
+        $database = $_SESSION["db"][3];//$iden->query($sentencia);
+        echo "datbasename:" . $database;
+        $sentencia = "SELECT COUNT(*) AS count
+            FROM information_schema.tables
+            WHERE table_schema = '$database'
+            AND table_name = '$tablename'";
+        $res = $iden->query($sentencia);
+    
+        return ($res == 1);
+    }
 
 
 	
