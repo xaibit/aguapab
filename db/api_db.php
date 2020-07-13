@@ -203,7 +203,7 @@
       // Ejecuta la sentencia SQL 
       $resultado = $iden->query($sentencia);
       if(!$resultado) 
-       die("\n Error: no se pudo reiniciar la tabla corriendo ". " ");
+       die("\n Error: no se pudo reiniciar la tabla corriendo $tabla". " ");
       return $resultado; 
     }	
 

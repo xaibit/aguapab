@@ -16,7 +16,7 @@ $filename = $_GET['f'];
     fwrite($handleLogFile, "Importando clientes desde el archivo: $filename.");
     
         
-
+		// IMPORTANTE: crear estas 2 tablas como copias de la tabla clientes, pero sin datos.
     	$tableName = "Clientes_tmp";
         $backupTableName = "Clientes_back";
         $destinyTableName = "Clientes";
