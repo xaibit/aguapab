@@ -1,3 +1,4 @@
+"Nombre","Direccion","CUIT","IVA","descuento","Localidad","CodPostal","Nro","BORRADO","email","lista","calleZ","Altura","Obs","Credito","PERIB","PER_IB_FECHA_EXENTO","RETIB","RET_IB_FECHA_EXENTO"
 "CONSUMIDOR FINAL","CONSUMIDOR FINAL","00-00000000-0",5,0.00,"9 de julio","00000",1,0,"no tiene",0,1,0,,,"0",2/7/2015 10:22:05,"0",2/7/2015 10:22:05
 "JORGE O POMPE","gutierrez 1510","00-27269007-0",6,0.00,"9 de julio","6500",2,0,"jorgepompe@nuevetronica.com.ar",0,168,1510,"",0.00,"0",2/7/2015 10:22:05,"0",2/7/2015 10:22:05
 "BAZTARRICA DIEGO","IRIGOYEN 480","00-24742108-0",6,0.00,"9 de julio","6500",3,0,"no tiene",0,173,480,"",,"0",2/7/2015 10:22:05,"0",2/7/2015 10:22:05
