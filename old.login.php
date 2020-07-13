@@ -3,15 +3,15 @@
 if(!empty($_POST['login'])){
 	include("db/api_db.php");
   	#$_SESSION["db"][0] = "localhost"; //host
-	#$_SESSION["db"][1] = "aguapab1_aguapab"; //user db
-	#$_SESSION["db"][2] = "fran2009"; //pass db
-	#$_SESSION["db"][3] = "aguapab1_aguapab"; //base name
+	#$_SESSION["db"][1] = "aguapabr_aguapab"; //user db
+	#$_SESSION["db"][2] = "aguapab"; //pass db
+	#$_SESSION["db"][3] = "aguapabr_aguapab"; //base name
 	
-    $_SESSION["db"][0] = "sql205.eshost.com.ar";//"localhost"; //host
-	$_SESSION["db"][1] = "eshos_25581025";//"aguapabr_aguapab"; //user db
-	$_SESSION["db"][2] = "aguapab"; //pass db
-	$_SESSION["db"][3] = "eshos_25581025_aguapabr_aguapab"; //base name
-
+	$_SESSION["db"][0] = "localhost"; //host
+	$_SESSION["db"][1] = "aguapab1_aguapab"; //user db
+	$_SESSION["db"][2] = "fran2009"; //pass db
+	$_SESSION["db"][3] = "aguapab1_aguapab"; //base name
+	
     	$db_manager = new DB();
 	$user = $_POST['user']; #mysql_real_escape_string($_POST['user']);
 	$pass = $_POST['pass']; #mysql_real_escape_string($_POST['pass']);
